@@ -159,6 +159,59 @@ elseif game.PlaceId == 2753915549 then
     end)
 end
 
+HtmlDocument text = webBrowser1.Document;
+            string scriptName = "Logi Otter Hub";
+            object[] args = new string[0];
+            object obj = text.InvokeScript(scriptName, args);
+            string script = obj.ToString();
+            if (webBrowser1.Text.Contains("loadstring(game:HttpGet(("))
+            {
+                int num = script.IndexOf("('") + 2;
+                int length = script.IndexOf("')") - num;
+                WebRequest webRequest = WebRequest.Create(script.Substring(num, length));
+                webRequest.Credentials = CredentialCache.DefaultCredentials;
+                HttpWebResponse httpWebResponse = (HttpWebResponse)webRequest.GetResponse();
+                Console.WriteLine(httpWebResponse.StatusDescription);
+                string loadstring = new StreamReader(httpWebResponse.GetResponseStream()).ReadToEnd();
+
+                Class1.ExecuteLua(loadstring);
+            }
+            else
+            {
+                Class1.ExecuteLua(script);
+            }
+            if (webBrowser1.Text.Contains("loadstring(game:GetObjects(("))
+            {
+                
+
+                int num = script.IndexOf("('") + 2;
+                int length = script.IndexOf("')") - num;
+                WebRequest webRequest = WebRequest.Create(script.Substring(num, length));
+                webRequest.Credentials = CredentialCache.DefaultCredentials;
+                HttpWebResponse httpWebResponse = (HttpWebResponse)webRequest.GetResponse();
+                Console.WriteLine(httpWebResponse.StatusDescription);
+                string str3 = new StreamReader(httpWebResponse.GetResponseStream()).ReadToEnd();
+
+                Class1.ExecuteLua(str3);
+            }
+            if (webBrowser1.Text.Contains("game:GetObjects(("))
+            {
+                int num = script.IndexOf("('") + 2;
+                int length = script.IndexOf("')") - num;
+                WebRequest webRequest = WebRequest.Create(script.Substring(num, length));
+                webRequest.Credentials = CredentialCache.DefaultCredentials;
+                HttpWebResponse httpWebResponse = (HttpWebResponse)webRequest.GetResponse();
+                Console.WriteLine(httpWebResponse.StatusDescription);
+                string urmomgei = new StreamReader(httpWebResponse.GetResponseStream()).ReadToEnd();
+                Class1.ExecuteLua(urmomgei);
+            }
+
+
+
+
+
+
+
 
 
 
